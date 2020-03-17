@@ -12,19 +12,11 @@ class OxTestRepositoryImpl(
     private val unsplashDataSource: UnsplashDataSource
 ) : OxTestRepository {
 
-    override suspend fun getUsers(): List<User> {
-        return when (val result = placeHolderDataSource.users()) {
-                is SingleResult.Success -> result.data
-                else -> emptyList()
-            }
-
+    override suspend fun getUsers(): SingleResult<List<User>> {
+        return placeHolderDataSource.users()
     }
 
-    override suspend fun getPhoto(numberOfPhotos: Int): List<Photo> {
-        return when (val result = unsplashDataSource.photos(numberOfPhotos)) {
-                is SingleResult.Success -> result.data
-                else -> emptyList()
-            }
-
+    override suspend fun getPhoto(numberOfPhotos: Int): SingleResult<List<Photo>> {
+        return unsplashDataSource.photos(numberOfPhotos)
     }
 }
