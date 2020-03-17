@@ -1,5 +1,7 @@
-package com.omertex.test.app.data.model
+package com.omertex.test.app.data.model.placeholder
 
+import com.omertex.test.app.data.model.placeholder.Address
+import com.omertex.test.app.data.model.placeholder.Company
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
