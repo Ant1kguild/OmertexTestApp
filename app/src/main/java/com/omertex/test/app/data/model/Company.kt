@@ -1,7 +1,11 @@
 package com.omertex.test.app.data.model
 
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
 data class Company(
-    val bs: String,
-    val catchPhrase: String,
-    val name: String
+    @Json(name = "bs") val bs: String,
+    @Json(name = "catchPhrase") val catchPhrase: String,
+    @Json(name = "name") val companyName: String
 )
