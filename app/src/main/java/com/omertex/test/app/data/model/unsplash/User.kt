@@ -1,20 +1,21 @@
 package com.omertex.test.app.data.model.unsplash
 
+import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 @JsonClass(generateAdapter = true)
 data class User(
-    val bio: String,
-    val id: String,
-    val instagram_username: String,
-    val links: LinksX,
-    val location: String,
-    val name: String,
-    val portfolio_url: String,
-    val profile_image: ProfileImage,
-    val total_collections: Int,
-    val total_likes: Int,
-    val total_photos: Int,
-    val twitter_username: String,
-    val username: String
+    @Json(name = "bio") val bio: String?,
+    @Json(name = "id") val id: String?,
+    @Json(name = "instagram_username") val instagram_username: String?,
+    @Json(name = "links") val links: LinksX?,
+    @Json(name = "location") val location: String?,
+    @Json(name = "name") val name: String?,
+    @Json(name = "portfolio_url") val portfolio_url: String?,
+    @Json(name = "profile_image") val profile_image: ProfileImage?,
+    @Json(name = "total_collections") val total_collections: Int,
+    @Json(name = "total_likes") val total_likes: Int,
+    @Json(name = "total_photos") val total_photos: Int,
+    @Json(name = "twitter_username") val twitter_username: String?,
+    @Json(name = "username") val username: String?
 )
