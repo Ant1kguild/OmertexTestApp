@@ -1,7 +1,8 @@
-package com.omertex.test.app
+package com.omertex.test.app.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.omertex.test.app.R
 
 class StartActivity : AppCompatActivity() {
 
