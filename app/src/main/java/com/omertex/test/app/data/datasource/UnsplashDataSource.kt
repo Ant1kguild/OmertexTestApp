@@ -7,9 +7,9 @@ import com.omertex.test.app.data.model.unsplash.Photo
 import java.lang.Exception
 
 class UnsplashDataSource(private val api: UnsplashApi) {
-    suspend fun photos(): SingleResult<List<Photo>> {
+    suspend fun photos(numberOfPhotos : Int): SingleResult<List<Photo>> {
         return try {
-            val result = api.getListPhotos(pageSize = 10)
+            val result = api.getListPhotos(pageSize = numberOfPhotos)
             ResponseHandler.handleSuccess(result)
         } catch (ex: Exception) {
             ResponseHandler.handleException(ex)

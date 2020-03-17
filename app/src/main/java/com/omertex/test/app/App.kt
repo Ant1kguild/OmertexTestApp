@@ -2,6 +2,8 @@ package com.omertex.test.app
 
 import android.app.Application
 import com.omertex.test.app.data.di.apiModule
+import com.omertex.test.app.data.di.repositoryModule
+import com.omertex.test.app.data.di.useCaseModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -15,7 +17,9 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 listOf(
-                    apiModule
+                    apiModule,
+                    repositoryModule,
+                    useCaseModule
                 )
             )
         }

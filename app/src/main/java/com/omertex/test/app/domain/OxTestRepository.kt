@@ -1,10 +1,11 @@
 package com.omertex.test.app.domain
 
 import com.omertex.test.app.data.model.placeholder.User
+import com.omertex.test.app.data.model.unsplash.Photo
 import kotlinx.coroutines.flow.Flow
 
 interface OxTestRepository {
-    suspend fun getUsers() : Flow<List<User>>
+    suspend fun getUsers() : List<User>
 
-    //suspend fun getRandomPhoto() : Flow<List<String>>
+    suspend fun getPhoto(numberOfPhotos : Int) : List<Photo>
 }

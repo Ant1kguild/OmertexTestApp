@@ -29,7 +29,7 @@ class StartActivity : AppCompatActivity() {
                 }
             }
 
-            when(val result = unsplashDataSource.photos()) {
+            when(val result = unsplashDataSource.photos(10)) {
                 is SingleResult.Success -> {
                     val list = result.data
                     Log.e(TAG, "List photo: ${list.size}")
@@ -37,10 +37,6 @@ class StartActivity : AppCompatActivity() {
                 is SingleResult.Error -> Log.e(TAG, "List photo error: ${result.exception}")
             }
         }
-
-
-
-
     }
 
     companion object{
