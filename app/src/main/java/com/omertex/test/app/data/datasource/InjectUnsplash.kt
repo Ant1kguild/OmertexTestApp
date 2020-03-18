@@ -1,7 +1,6 @@
-package com.omertex.test.app.presentation
+package com.omertex.test.app.data.datasource
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.omertex.test.app.data.datasource.api.PlaceHolderFakeApi
 import com.omertex.test.app.data.datasource.api.UnsplashApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -30,5 +29,6 @@ object InjectUnsplash {
         .build()
 
     fun provideUnsplashApi(): UnsplashApi =
-        provideRetrofitInstance().create(UnsplashApi::class.java)
+        provideRetrofitInstance()
+            .create(UnsplashApi::class.java)
 }

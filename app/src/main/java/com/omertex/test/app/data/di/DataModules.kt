@@ -4,8 +4,8 @@ import com.omertex.test.app.data.datasource.PlaceHolderDataSource
 import com.omertex.test.app.data.datasource.UnsplashDataSource
 import com.omertex.test.app.data.repository.OxTestRepositoryImpl
 import com.omertex.test.app.domain.OxTestRepository
-import com.omertex.test.app.presentation.InjectPH
-import com.omertex.test.app.presentation.InjectUnsplash
+import com.omertex.test.app.data.datasource.InjectPH
+import com.omertex.test.app.data.datasource.InjectUnsplash
 import org.koin.dsl.module
 
 

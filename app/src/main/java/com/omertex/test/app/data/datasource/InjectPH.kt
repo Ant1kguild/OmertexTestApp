@@ -1,4 +1,4 @@
-package com.omertex.test.app.presentation
+package com.omertex.test.app.data.datasource
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.omertex.test.app.data.datasource.api.PlaceHolderFakeApi
