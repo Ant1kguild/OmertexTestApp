@@ -1,8 +1,8 @@
 package com.omertex.test.app.domain
 
-import com.omertex.test.app.core.datatype.SingleResult
+import kotlinx.coroutines.flow.Flow
 
 
 interface BaseUseCase<out T> {
-    suspend fun execute(): SingleResult<T>
+    suspend fun execute(): Flow<T>
 }

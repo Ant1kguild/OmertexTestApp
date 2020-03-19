@@ -1,14 +1,14 @@
-package com.omertex.test.app.data.datasource
+package com.omertex.test.app.di
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.omertex.test.app.data.datasource.api.UnsplashApi
+import com.omertex.test.app.data.datasource.api.PlaceHolderFakeApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
-object InjectUnsplash {
-    private const val BASE_URL = "https://api.unsplash.com/"
+object InjectPH {
+    private const val BASE_URL = "https://jsonplaceholder.typicode.com/"
 
     private fun loggerInterceptor(): HttpLoggingInterceptor {
         val logger = HttpLoggingInterceptor()
@@ -28,7 +28,6 @@ object InjectUnsplash {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    fun provideUnsplashApi(): UnsplashApi =
-        provideRetrofitInstance()
-            .create(UnsplashApi::class.java)
+    fun providePlaceHolderApi(): PlaceHolderFakeApi =
+        provideRetrofitInstance().create(PlaceHolderFakeApi::class.java)
 }

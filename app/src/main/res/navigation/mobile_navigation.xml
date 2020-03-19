@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/nav_merge">
+
+    <fragment
+        android:id="@+id/nav_merge"
+        android:name="com.omertex.test.app.presentation.ui.fragment.merge.MergeFragment"
+        android:label="merge_fragment"
+        tools:layout="@layout/merge_fragment" >
+        <action
+            android:id="@+id/action_merge_to_details"
+            app:destination="@id/nav_details" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_details"
+        android:name="com.omertex.test.app.presentation.ui.fragment.details.DetailsFragment"
+        android:label="details_fragment"
+        tools:layout="@layout/details_fragment" >
+        <argument
+            android:name="model"
+            app:argType="com.omertex.test.app.data.model.MergeModel" />
+    </fragment>
+</navigation>

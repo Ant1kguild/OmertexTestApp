@@ -7,33 +7,35 @@ import com.omertex.test.app.data.model.placeholder.User
 import com.omertex.test.app.data.model.unsplash.Photo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.*
+import java.lang.Exception
 
 class GetMergeListUseCase(
     private val oxTestRepository: OxTestRepository,
     private val mapper: MergeModelMapper
 ) :
-    BaseUseCase<List<MergeModel>> {
+    BaseUseCase<SingleResult<List<MergeModel>>> {
 
-    private var users = emptyList<User>()
+    private suspend fun users(): List<User> = when (val result = oxTestRepository.getUsers()) {
+        is SingleResult.Success -> result.data
+        else -> emptyList()
+    }
 
-    private fun mergeList(users: List<User>, photos: List<Photo>): List<MergeModel> {
-        val result = mutableListOf<MergeModel>()
-        for (i in 0..users.size) {
-            result.add(i, mapper.map(users[i], photos[i]))
+    private fun mergeList(users: List<User>, photos: List<Photo>): SingleResult<List<MergeModel>> {
+        val mergeList = mutableListOf<MergeModel>()
+        return if (users.isNotEmpty() && photos.isNotEmpty()) {
+            val size = users.size - 1
+            for (i in 0..size) {
+                mergeList.add(i, mapper.map(users[i], photos[i]))
+            }
+            SingleResult.Success(mergeList)
+        } else {
+            SingleResult.Error(Exception("some lis empty"))
         }
-        return result
+
     }
 
     private val mergeList = flow {
-        when (val result = oxTestRepository.getUsers()) {
-            is SingleResult.Success -> {
-                users = result.data
-                emit(result.data)
-            }
-            else -> {
-                emit(emptyList())
-            }
-        }
+        emit(users())
     }
         .filter {
             it.isNotEmpty()
@@ -45,15 +47,12 @@ class GetMergeListUseCase(
             }
         }
         .map {
-            mergeList(users, it)
+            mergeList(users(), it)
         }
         .flowOn(Dispatchers.IO)
 
 
-    override suspend fun execute(): SingleResult<List<MergeModel>> {
-        return mergeList.map {
-                SingleResult.Success(it)
-            }
-            .single()
+    override suspend fun execute(): Flow<SingleResult<List<MergeModel>>> {
+        return mergeList
     }
 }
