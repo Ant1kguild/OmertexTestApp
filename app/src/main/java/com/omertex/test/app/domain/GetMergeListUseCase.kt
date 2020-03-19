@@ -37,17 +37,11 @@ class GetMergeListUseCase(
     private val mergeList = flow {
         emit(users())
     }
-        .filter {
-            it.isNotEmpty()
-        }
         .map {
             when (val result = oxTestRepository.getPhoto(it.size)) {
-                is SingleResult.Success -> result.data
-                else -> emptyList()
+                is SingleResult.Success -> mergeList(it,result.data)
+                else -> SingleResult.Error(Exception("Photo lis empty"))
             }
-        }
-        .map {
-            mergeList(users(), it)
         }
         .flowOn(Dispatchers.IO)
 
